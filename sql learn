@@ -1,0 +1,19 @@
+select modal_text, count(distinct user_id)
+from onboarding_modals
+where ab_group ='control'
+group by 1;
+-- thu xem co can distinct ko, ko thi co the count ab_group
+
+select modal_text, count(user_id)
+from onboarding_modals
+where ab_group ='control'
+group by 1;
+
+--count dung case when
+
+select modal_text, count(case when ab_group ='control' then 'control' 
+    else null end) as control,
+    count (case when ab_group='variant'then 'variant'
+    else null end) as variant
+from onboarding_modals
+group by 1;
